@@ -1,0 +1,16 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://api:8080
+    networks:
+      - sc-kpi-network
+    restart: unless-stopped
+
+networks:
+  sc-kpi-network:
+    external: true
