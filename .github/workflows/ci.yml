@@ -127,7 +127,7 @@ jobs:
 
       - name: Install Playwright browsers
         working-directory: e2e-tests
-        run: pnpm exec playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Run E2E smoke tests
         working-directory: e2e-tests
