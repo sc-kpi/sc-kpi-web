@@ -1,0 +1,38 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Page not found",
+    "backToHome": "Back to home"
+  },
+  "nav": {
+    "home": "Home",
+    "clubs": "Clubs",
+    "projects": "Projects",
+    "departments": "Departments",
+    "documents": "Documents",
+    "login": "Log in",
+    "register": "Sign up",
+    "profile": "Profile",
+    "logout": "Log out",
+    "admin": "Administration"
+  },
+  "auth": {
+    "login": "Log in",
+    "register": "Sign up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "loginError": "Invalid email or password",
+    "registerSuccess": "Account created successfully"
+  },
+  "home": {
+    "title": "SC KPI",
+    "subtitle": "Student Council at Igor Sikorsky Kyiv Polytechnic Institute"
+  }
+}
