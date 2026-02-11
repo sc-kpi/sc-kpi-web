@@ -114,6 +114,9 @@ jobs:
       - name: Wait for sc-kpi-web
         run: npx wait-on http://localhost:3000 --timeout 60000
 
+      - name: Remove workspace config to isolate e2e-tests
+        run: rm pnpm-workspace.yaml
+
       - name: Checkout sc-kpi-web-tests
         uses: actions/checkout@v4
         with:
