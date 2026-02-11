@@ -81,3 +81,84 @@ jobs:
           name: coverage-report
           path: coverage
           retention-days: 7
+
+  e2e-tests:
+    name: E2E Smoke Tests
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout sc-kpi-web
+        uses: actions/checkout@v4
+
+      - name: Checkout sc-kpi-web-tests
+        uses: actions/checkout@v4
+        with:
+          repository: sc-kpi/sc-kpi-web-tests
+          ref: develop
+          path: e2e-tests
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            e2e-tests/pnpm-lock.yaml
+
+      - name: Install and build sc-kpi-web
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+
+      - name: Start sc-kpi-web
+        run: pnpm start &
+
+      - name: Wait for sc-kpi-web
+        run: npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Install test dependencies
+        working-directory: e2e-tests
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        working-directory: e2e-tests
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run E2E smoke tests
+        working-directory: e2e-tests
+        run: pnpm test
+        env:
+          TEST_ENV: ci
+          CI: true
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-playwright-report
+          path: e2e-tests/playwright-report
+          retention-days: 7
+
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-allure-results
+          path: e2e-tests/allure-results
+          retention-days: 7
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-test-results
+          path: e2e-tests/test-results
+          retention-days: 7
