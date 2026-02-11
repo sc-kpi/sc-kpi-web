@@ -92,13 +92,6 @@ jobs:
       - name: Checkout sc-kpi-web
         uses: actions/checkout@v4
 
-      - name: Checkout sc-kpi-web-tests
-        uses: actions/checkout@v4
-        with:
-          repository: sc-kpi/sc-kpi-web-tests
-          ref: develop
-          path: e2e-tests
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -109,9 +102,6 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: |
-            pnpm-lock.yaml
-            e2e-tests/pnpm-lock.yaml
 
       - name: Install and build sc-kpi-web
         run: |
@@ -123,6 +113,13 @@ jobs:
 
       - name: Wait for sc-kpi-web
         run: npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Checkout sc-kpi-web-tests
+        uses: actions/checkout@v4
+        with:
+          repository: sc-kpi/sc-kpi-web-tests
+          ref: develop
+          path: e2e-tests
 
       - name: Install test dependencies
         working-directory: e2e-tests
