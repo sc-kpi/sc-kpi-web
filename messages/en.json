@@ -19,7 +19,11 @@
   },
   "auth": {
     "login": "Log in",
+    "loggingIn": "Logging in...",
+    "loginDescription": "Sign in to your account",
     "register": "Sign up",
+    "registering": "Signing up...",
+    "registerDescription": "Create a new account",
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm password",
@@ -29,6 +33,8 @@
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
     "loginError": "Invalid email or password",
+    "registerError": "Registration failed",
+    "emailTaken": "This email is already registered",
     "registerSuccess": "Account created successfully"
   },
   "home": {

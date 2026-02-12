@@ -10,6 +10,11 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
 jobs:
   lint:
     name: Lint & Typecheck
@@ -81,6 +86,14 @@ jobs:
           name: coverage-report
           path: coverage
           retention-days: 7
+
+      - name: Publish Web Unit Test results
+        if: always() && github.event_name == 'pull_request'
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: test-results/junit.xml
+          check_name: Web Unit Test Results
+          comment_title: Web Unit Tests
 
   e2e-tests:
     name: E2E Smoke Tests
@@ -162,3 +175,11 @@ jobs:
           name: e2e-test-results
           path: e2e-tests/test-results
           retention-days: 7
+
+      - name: Publish E2E Smoke Test results
+        if: always() && github.event_name == 'pull_request'
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: e2e-tests/test-results/junit.xml
+          check_name: E2E Smoke Test Results
+          comment_title: E2E Smoke Tests
