@@ -19,7 +19,11 @@
   },
   "auth": {
     "login": "Увійти",
+    "loggingIn": "Вхід...",
+    "loginDescription": "Увійдіть у свій акаунт",
     "register": "Реєстрація",
+    "registering": "Реєстрація...",
+    "registerDescription": "Створіть новий акаунт",
     "email": "Електронна пошта",
     "password": "Пароль",
     "confirmPassword": "Підтвердити пароль",
@@ -29,6 +33,8 @@
     "noAccount": "Немає акаунту?",
     "hasAccount": "Вже є акаунт?",
     "loginError": "Невірна електронна пошта або пароль",
+    "registerError": "Помилка реєстрації",
+    "emailTaken": "Ця електронна пошта вже зареєстрована",
     "registerSuccess": "Акаунт успішно створено"
   },
   "home": {
