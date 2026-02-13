@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -11,15 +11,18 @@ import { ApiError } from "@/shared/types/api";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
-
 import { useAuth } from "../hooks/use-auth";
 import { type LoginFormData, loginSchema } from "../lib/validation";
+import { GoogleSignInButton } from "./google-sign-in-button";
 
 export function LoginForm() {
   const t = useTranslations("auth");
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { login, isLoggingIn } = useAuth();
-  const [apiError, setApiError] = useState<string | null>(null);
+
+  const oauthError = searchParams.get("error");
+  const [apiError, setApiError] = useState<string | null>(oauthError ? t("oauthError") : null);
 
   const {
     register,
@@ -75,9 +78,29 @@ export function LoginForm() {
         {errors.password && <p className="text-destructive text-sm">{errors.password.message}</p>}
       </div>
 
+      <div className="flex justify-end">
+        <Link
+          href="/forgot-password"
+          className="text-muted-foreground text-sm underline-offset-4 hover:text-primary hover:underline"
+        >
+          {t("forgotPassword")}
+        </Link>
+      </div>
+
       <Button type="submit" className="w-full" disabled={isLoggingIn}>
         {isLoggingIn ? t("loggingIn") : t("login")}
       </Button>
+
+      <div className="relative my-4">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-card px-2 text-muted-foreground">{t("orContinueWith")}</span>
+        </div>
+      </div>
+
+      <GoogleSignInButton />
 
       <p className="text-center text-muted-foreground text-sm">
         {t("noAccount")}{" "}
