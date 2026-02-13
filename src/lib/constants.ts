@@ -7,6 +7,9 @@ export const API_ROUTES = {
     logout: "/api/v1/auth/logout",
     refresh: "/api/v1/auth/refresh",
     me: "/api/v1/auth/me",
+    forgotPassword: "/api/v1/auth/forgot-password",
+    resetPassword: "/api/v1/auth/reset-password",
+    googleOAuth: "/api/v1/auth/oauth2/google",
   },
   users: {
     base: "/api/v1/users",

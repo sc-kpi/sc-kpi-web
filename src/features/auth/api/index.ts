@@ -17,3 +17,11 @@ export function logout(): Promise<void> {
 export function getMe(): Promise<AuthUser> {
   return api.get<AuthUser>(API_ROUTES.auth.me);
 }
+
+export function forgotPassword(email: string): Promise<void> {
+  return api.post<void>(API_ROUTES.auth.forgotPassword, { email });
+}
+
+export function resetPassword(token: string, newPassword: string): Promise<void> {
+  return api.post<void>(API_ROUTES.auth.resetPassword, { token, newPassword });
+}
