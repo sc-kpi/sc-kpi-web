@@ -3,7 +3,16 @@
     "loading": "Loading...",
     "error": "An error occurred",
     "notFound": "Page not found",
-    "backToHome": "Back to home"
+    "forbidden": "Access denied",
+    "accessDenied": "You do not have permission to access this page",
+    "backToHome": "Back to home",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "actions": "Actions",
+    "search": "Search",
+    "noResults": "No results found"
   },
   "nav": {
     "home": "Home",
@@ -40,5 +49,43 @@
   "home": {
     "title": "SC KPI",
     "subtitle": "Student Council at Igor Sikorsky Kyiv Polytechnic Institute"
+  },
+  "admin": {
+    "title": "Administration",
+    "users": "Users",
+    "createUser": "Create user",
+    "editUser": "Edit user",
+    "deleteUser": "Delete user",
+    "userDetails": "User details",
+    "tier": "Tier",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "assignPartner": "Assign partner",
+    "removePartner": "Remove partner",
+    "confirmDelete": "Are you sure you want to delete this user?",
+    "confirmDeactivate": "Are you sure you want to deactivate this user?",
+    "userCreated": "User created successfully",
+    "userUpdated": "User updated successfully",
+    "userDeleted": "User deleted successfully",
+    "tierUpdated": "Tier updated successfully",
+    "statusUpdated": "Status updated successfully",
+    "partnerAssigned": "Partner role assigned successfully",
+    "partnerRemoved": "Partner role removed successfully",
+    "partnerId": "Partner ID",
+    "partnerLevel": "Partner level",
+    "assignedAt": "Assigned at",
+    "createdAt": "Created at",
+    "noPartnerRoles": "No partner roles assigned",
+    "tierNames": {
+      "0": "Guest",
+      "1": "Basic",
+      "2": "Internal",
+      "3": "Advanced",
+      "4": "Senior",
+      "5": "Admin"
+    }
   }
 }
