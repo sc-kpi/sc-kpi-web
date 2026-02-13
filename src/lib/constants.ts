@@ -11,6 +11,10 @@ export const API_ROUTES = {
   users: {
     base: "/api/v1/users",
     byId: (id: string) => `/api/v1/users/${id}`,
+    tier: (id: string) => `/api/v1/users/${id}/tier`,
+    status: (id: string) => `/api/v1/users/${id}/status`,
+    partners: (id: string) => `/api/v1/users/${id}/partners`,
+    partner: (id: string, partnerId: string) => `/api/v1/users/${id}/partners/${partnerId}`,
   },
   clubs: {
     base: "/api/v1/clubs",
