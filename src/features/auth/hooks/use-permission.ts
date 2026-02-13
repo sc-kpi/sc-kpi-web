@@ -13,6 +13,6 @@ export function useIsAdmin(): boolean {
   return usePermission(CAPABILITY_TIERS.ADMIN);
 }
 
-export function useIsModerator(): boolean {
-  return usePermission(CAPABILITY_TIERS.MODERATOR);
+export function useIsSenior(): boolean {
+  return usePermission(CAPABILITY_TIERS.SENIOR);
 }
