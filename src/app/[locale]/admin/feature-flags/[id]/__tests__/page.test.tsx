@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen } from "@/test/test-utils";
 import type { FeatureFlagDto } from "@/features/feature-flags/types";
+import { render, screen } from "@/test/test-utils";
 import AdminFeatureFlagDetailPage from "../page";
 
 const mockUpdateMutate = vi.fn();

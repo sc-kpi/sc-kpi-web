@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen } from "@/test/test-utils";
-import type { PaginatedResponse } from "@/shared/types/api";
 import type { FeatureFlagDto } from "@/features/feature-flags/types";
+import type { PaginatedResponse } from "@/shared/types/api";
+import { render, screen } from "@/test/test-utils";
 import AdminFeatureFlagsPage from "../page";
 
 const mockToggleMutate = vi.fn();
