@@ -200,8 +200,6 @@ export default function AdminAuditLogsPage() {
       {/* Table */}
       {isLoading ? (
         <p>{tc("loading")}</p>
-      ) : !data?.content.length ? (
-        <p className="text-muted-foreground text-sm">{t("noEntries")}</p>
       ) : (
         <div className="overflow-x-auto rounded-lg border">
           <table className="w-full text-left text-sm">
@@ -221,45 +219,53 @@ export default function AdminAuditLogsPage() {
               </tr>
             </thead>
             <tbody className="divide-y">
-              {data.content.map((event) => (
-                <tr key={event.id} className="hover:bg-muted/30">
-                  <td className="whitespace-nowrap px-3 py-2 text-xs">
-                    {new Date(event.createdAt).toLocaleString()}
+              {data?.content.length ? (
+                data.content.map((event) => (
+                  <tr key={event.id} className="hover:bg-muted/30">
+                    <td className="whitespace-nowrap px-3 py-2 text-xs">
+                      {new Date(event.createdAt).toLocaleString()}
+                    </td>
+                    <td className="px-3 py-2 text-xs">{event.actorEmail ?? "—"}</td>
+                    <td className="px-3 py-2">
+                      <span
+                        className={`inline-flex rounded-full px-2 py-0.5 font-medium text-xs ${ACTION_COLORS[event.action] ?? "bg-gray-100 text-gray-700"}`}
+                      >
+                        {event.action}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2">
+                      <span className="inline-flex rounded-full bg-muted px-2 py-0.5 font-medium text-xs">
+                        {event.entityType}
+                      </span>
+                    </td>
+                    <td className="max-w-[200px] truncate px-3 py-2 text-xs">
+                      {event.entityName ?? "—"}
+                    </td>
+                    <td className="px-3 py-2 text-xs">{event.fieldName ?? "—"}</td>
+                    <td className="px-3 py-2 text-xs">
+                      {event.oldValue || event.newValue ? (
+                        <>
+                          <span className="text-muted-foreground">{event.oldValue ?? "—"}</span>
+                          {" → "}
+                          <span>{event.newValue ?? "—"}</span>
+                        </>
+                      ) : (
+                        "—"
+                      )}
+                    </td>
+                    <td className="max-w-[200px] truncate px-3 py-2 text-muted-foreground text-xs">
+                      {event.details ?? "—"}
+                    </td>
+                    <td className="px-3 py-2 text-xs">{event.sourceModule}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={9} className="px-3 py-8 text-center text-muted-foreground text-sm">
+                    {t("noEntries")}
                   </td>
-                  <td className="px-3 py-2 text-xs">{event.actorEmail ?? "—"}</td>
-                  <td className="px-3 py-2">
-                    <span
-                      className={`inline-flex rounded-full px-2 py-0.5 font-medium text-xs ${ACTION_COLORS[event.action] ?? "bg-gray-100 text-gray-700"}`}
-                    >
-                      {event.action}
-                    </span>
-                  </td>
-                  <td className="px-3 py-2">
-                    <span className="inline-flex rounded-full bg-muted px-2 py-0.5 font-medium text-xs">
-                      {event.entityType}
-                    </span>
-                  </td>
-                  <td className="max-w-[200px] truncate px-3 py-2 text-xs">
-                    {event.entityName ?? "—"}
-                  </td>
-                  <td className="px-3 py-2 text-xs">{event.fieldName ?? "—"}</td>
-                  <td className="px-3 py-2 text-xs">
-                    {event.oldValue || event.newValue ? (
-                      <>
-                        <span className="text-muted-foreground">{event.oldValue ?? "—"}</span>
-                        {" → "}
-                        <span>{event.newValue ?? "—"}</span>
-                      </>
-                    ) : (
-                      "—"
-                    )}
-                  </td>
-                  <td className="max-w-[200px] truncate px-3 py-2 text-muted-foreground text-xs">
-                    {event.details ?? "—"}
-                  </td>
-                  <td className="px-3 py-2 text-xs">{event.sourceModule}</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
