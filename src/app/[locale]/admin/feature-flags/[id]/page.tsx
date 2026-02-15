@@ -75,8 +75,8 @@ export default function AdminFeatureFlagDetailPage() {
               }}
             >
               <div className="space-y-2">
-                <Label>{t("key")}</Label>
-                <Input value={flag.key} disabled />
+                <Label htmlFor="key">{t("key")}</Label>
+                <Input id="key" value={flag.key} disabled />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="name">{t("name")}</Label>
