@@ -51,7 +51,10 @@ export const API_ROUTES = {
     adminOverrides: (id: string) => `/api/v1/admin/feature-flags/${id}/overrides`,
     adminOverride: (id: string, oid: string) =>
       `/api/v1/admin/feature-flags/${id}/overrides/${oid}`,
-    adminAuditLog: (id: string) => `/api/v1/admin/feature-flags/${id}/audit-log`,
-    adminAllAuditLogs: "/api/v1/admin/feature-flags/audit-log",
+  },
+  audit: {
+    base: "/api/v1/admin/audit-logs",
+    export: "/api/v1/admin/audit-logs/export",
+    stats: "/api/v1/admin/audit-logs/stats",
   },
 } as const;

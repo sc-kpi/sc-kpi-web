@@ -4,7 +4,6 @@ import type { PaginatedResponse } from "@/shared/types/api";
 import type {
   CreateFeatureFlagRequest,
   CreateOverrideRequest,
-  FeatureFlagAuditEntry,
   FeatureFlagDto,
   FeatureFlagOverrideDto,
   FeatureFlags,
@@ -60,25 +59,4 @@ export function addOverride(
 
 export function removeOverride(id: string, overrideId: string): Promise<void> {
   return api.delete<void>(API_ROUTES.featureFlags.adminOverride(id, overrideId));
-}
-
-export function getAuditLog(
-  id: string,
-  page = 0,
-  size = 20,
-): Promise<PaginatedResponse<FeatureFlagAuditEntry>> {
-  return api.get<PaginatedResponse<FeatureFlagAuditEntry>>(
-    API_ROUTES.featureFlags.adminAuditLog(id),
-    { params: { page: String(page), size: String(size) } },
-  );
-}
-
-export function getAllAuditLogs(
-  page = 0,
-  size = 20,
-): Promise<PaginatedResponse<FeatureFlagAuditEntry>> {
-  return api.get<PaginatedResponse<FeatureFlagAuditEntry>>(
-    API_ROUTES.featureFlags.adminAllAuditLogs,
-    { params: { page: String(page), size: String(size) } },
-  );
 }

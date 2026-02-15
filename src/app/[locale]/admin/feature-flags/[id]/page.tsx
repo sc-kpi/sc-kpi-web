@@ -6,12 +6,11 @@ import { useState } from "react";
 import {
   useAddOverrideMutation,
   useAdminFeatureFlag,
-  useFeatureFlagAuditLog,
   useRemoveOverrideMutation,
   useUpdateFeatureFlagMutation,
 } from "@/features/feature-flags/hooks";
 import type { CreateOverrideRequest } from "@/features/feature-flags/types";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { Button } from "@/shared/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui/card";
 import { Input } from "@/shared/ui/input";
@@ -28,8 +27,6 @@ export default function AdminFeatureFlagDetailPage() {
   const updateMutation = useUpdateFeatureFlagMutation(id);
   const addOverrideMutation = useAddOverrideMutation(id);
   const removeOverrideMutation = useRemoveOverrideMutation(id);
-  const { data: auditData } = useFeatureFlagAuditLog(id);
-
   const [overrideForm, setOverrideForm] = useState<CreateOverrideRequest>({
     overrideType: "TIER",
     tierLevel: 1,
@@ -259,44 +256,18 @@ export default function AdminFeatureFlagDetailPage() {
         </Card>
       </div>
 
-      {/* Audit Log */}
+      {/* Audit Log Link */}
       <Card>
         <CardHeader>
           <CardTitle>{t("auditLog")}</CardTitle>
         </CardHeader>
         <CardContent>
-          {!auditData?.content.length ? (
-            <p className="text-muted-foreground text-sm">{t("noAuditEntries")}</p>
-          ) : (
-            <div className="overflow-x-auto rounded-lg border">
-              <table className="w-full text-left text-sm">
-                <thead className="border-b bg-muted/50">
-                  <tr>
-                    <th className="px-3 py-2 font-medium">{t("action")}</th>
-                    <th className="px-3 py-2 font-medium">{t("field")}</th>
-                    <th className="px-3 py-2 font-medium">{t("oldValue")}</th>
-                    <th className="px-3 py-2 font-medium">{t("newValue")}</th>
-                    <th className="px-3 py-2 font-medium">{t("reason")}</th>
-                    <th className="px-3 py-2 font-medium">{t("changedAt")}</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y">
-                  {auditData.content.map((entry) => (
-                    <tr key={entry.id}>
-                      <td className="px-3 py-2 font-mono text-xs">{entry.action}</td>
-                      <td className="px-3 py-2">{entry.fieldName ?? "—"}</td>
-                      <td className="px-3 py-2 text-muted-foreground">{entry.oldValue ?? "—"}</td>
-                      <td className="px-3 py-2">{entry.newValue ?? "—"}</td>
-                      <td className="px-3 py-2 text-muted-foreground">{entry.reason ?? "—"}</td>
-                      <td className="px-3 py-2 text-xs">
-                        {new Date(entry.changedAt).toLocaleString()}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+          <Link
+            href={`/admin/audit-logs?entityType=FEATURE_FLAG&entityId=${id}` as "/admin/audit-logs"}
+            className="text-primary underline underline-offset-4 hover:text-primary/80"
+          >
+            {t("auditLog")} →
+          </Link>
         </CardContent>
       </Card>
     </div>
