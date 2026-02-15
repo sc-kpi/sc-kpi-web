@@ -2,47 +2,46 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { useDeleteUserMutation, useUsers } from "@/features/user/hooks";
+import {
+  useAdminFeatureFlags,
+  useDeleteFeatureFlagMutation,
+  useToggleFeatureFlagMutation,
+} from "@/features/feature-flags/hooks";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/shared/ui/button";
 
-function TierBadge({ tier, t }: { tier: number; t: (key: string) => string }) {
-  const colors: Record<number, string> = {
-    0: "bg-gray-100 text-gray-700",
-    1: "bg-blue-100 text-blue-700",
-    2: "bg-green-100 text-green-700",
-    3: "bg-yellow-100 text-yellow-700",
-    4: "bg-purple-100 text-purple-700",
-    5: "bg-red-100 text-red-700",
-  };
-
-  return (
-    <span
-      className={`inline-flex rounded-full px-2 py-0.5 font-medium text-xs ${colors[tier] ?? colors[0]}`}
-    >
-      {t(`tierNames.${tier}`)}
-    </span>
-  );
-}
-
-function StatusBadge({ active, t }: { active: boolean; t: (key: string) => string }) {
+function EnabledBadge({ enabled, t }: { enabled: boolean; t: (key: string) => string }) {
   return (
     <span
       className={`inline-flex rounded-full px-2 py-0.5 font-medium text-xs ${
-        active ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+        enabled ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
       }`}
     >
-      {active ? t("active") : t("inactive")}
+      {enabled ? t("enabled") : t("disabled")}
     </span>
   );
 }
 
-export default function AdminUsersPage() {
-  const t = useTranslations("admin");
+function ToggleButton({ id, enabled }: { id: string; enabled: boolean }) {
+  const toggleMutation = useToggleFeatureFlagMutation(id);
+  return (
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={() => toggleMutation.mutate({ enabled: !enabled })}
+      disabled={toggleMutation.isPending}
+    >
+      {enabled ? "Off" : "On"}
+    </Button>
+  );
+}
+
+export default function AdminFeatureFlagsPage() {
+  const t = useTranslations("admin.featureFlags");
   const tc = useTranslations("common");
   const [page, setPage] = useState(0);
-  const { data, isLoading } = useUsers(page);
-  const deleteMutation = useDeleteUserMutation();
+  const { data, isLoading } = useAdminFeatureFlags(page);
+  const deleteMutation = useDeleteFeatureFlagMutation();
 
   if (isLoading) {
     return <p>{tc("loading")}</p>;
@@ -51,9 +50,9 @@ export default function AdminUsersPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="font-bold text-2xl">{t("users")}</h1>
-        <Link href="/admin/users/new">
-          <Button>{t("createUser")}</Button>
+        <h1 className="font-bold text-2xl">{t("title")}</h1>
+        <Link href="/admin/feature-flags/new">
+          <Button>{t("createFlag")}</Button>
         </Link>
       </div>
 
@@ -61,34 +60,30 @@ export default function AdminUsersPage() {
         <table className="w-full text-left text-sm">
           <thead className="border-b bg-muted/50">
             <tr>
-              <th className="px-4 py-3 font-medium">{t("users")}</th>
-              <th className="px-4 py-3 font-medium">{t("tier")}</th>
+              <th className="px-4 py-3 font-medium">{t("key")}</th>
+              <th className="px-4 py-3 font-medium">{t("name")}</th>
               <th className="px-4 py-3 font-medium">{t("status")}</th>
+              <th className="px-4 py-3 font-medium">{t("environment")}</th>
+              <th className="px-4 py-3 font-medium">{t("rollout")}</th>
               <th className="px-4 py-3 font-medium">{tc("actions")}</th>
             </tr>
           </thead>
           <tbody className="divide-y">
-            {data?.content.map((user) => (
-              <tr key={user.id} className="hover:bg-muted/30">
+            {data?.content.map((flag) => (
+              <tr key={flag.id} className="hover:bg-muted/30">
+                <td className="px-4 py-3 font-mono text-xs">{flag.key}</td>
+                <td className="px-4 py-3">{flag.name}</td>
                 <td className="px-4 py-3">
-                  <div>
-                    <p className="font-medium">
-                      {user.firstName} {user.lastName}
-                    </p>
-                    <p className="text-muted-foreground text-xs">{user.email}</p>
-                  </div>
+                  <EnabledBadge enabled={flag.enabled} t={t} />
                 </td>
-                <td className="px-4 py-3">
-                  <TierBadge tier={user.capabilityTier} t={t} />
-                </td>
-                <td className="px-4 py-3">
-                  <StatusBadge active={user.active} t={t} />
-                </td>
+                <td className="px-4 py-3 text-muted-foreground">{flag.environment || "—"}</td>
+                <td className="px-4 py-3">{flag.rolloutPercentage}%</td>
                 <td className="px-4 py-3">
                   <div className="flex gap-2">
-                    <Link href={`/admin/users/${user.id}`}>
+                    <ToggleButton id={flag.id} enabled={flag.enabled} />
+                    <Link href={`/admin/feature-flags/${flag.id}`}>
                       <Button variant="outline" size="sm">
-                        {t("editUser")}
+                        {t("edit")}
                       </Button>
                     </Link>
                     <Button
@@ -96,11 +91,11 @@ export default function AdminUsersPage() {
                       size="sm"
                       onClick={() => {
                         if (confirm(t("confirmDelete"))) {
-                          deleteMutation.mutate(user.id);
+                          deleteMutation.mutate(flag.id);
                         }
                       }}
                     >
-                      {t("deleteUser")}
+                      {tc("delete")}
                     </Button>
                   </div>
                 </td>

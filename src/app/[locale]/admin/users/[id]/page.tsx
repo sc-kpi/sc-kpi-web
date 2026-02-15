@@ -137,7 +137,7 @@ export default function AdminUserDetailPage() {
               <Label>{t("status")}</Label>
               <div className="flex items-center gap-3">
                 <span
-                  className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${
+                  className={`inline-flex rounded-full px-2 py-0.5 font-medium text-xs ${
                     user.active ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
                   }`}
                 >
@@ -153,7 +153,7 @@ export default function AdminUserDetailPage() {
                 </Button>
               </div>
             </div>
-            <div className="space-y-1 pt-2 text-sm text-muted-foreground">
+            <div className="space-y-1 pt-2 text-muted-foreground text-sm">
               <p>
                 {t("createdAt")}: {new Date(user.createdAt).toLocaleDateString()}
               </p>
@@ -169,7 +169,7 @@ export default function AdminUserDetailPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           {user.partnerRoles.length === 0 ? (
-            <p className="text-sm text-muted-foreground">{t("noPartnerRoles")}</p>
+            <p className="text-muted-foreground text-sm">{t("noPartnerRoles")}</p>
           ) : (
             <div className="overflow-x-auto rounded-lg border">
               <table className="w-full text-left text-sm">

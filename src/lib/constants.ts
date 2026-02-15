@@ -42,4 +42,16 @@ export const API_ROUTES = {
     byId: (id: string) => `/api/v1/notifications/${id}`,
     markRead: (id: string) => `/api/v1/notifications/${id}/read`,
   },
+  featureFlags: {
+    base: "/api/v1/feature-flags",
+    byKey: (key: string) => `/api/v1/feature-flags/${key}`,
+    admin: "/api/v1/admin/feature-flags",
+    adminById: (id: string) => `/api/v1/admin/feature-flags/${id}`,
+    adminToggle: (id: string) => `/api/v1/admin/feature-flags/${id}/toggle`,
+    adminOverrides: (id: string) => `/api/v1/admin/feature-flags/${id}/overrides`,
+    adminOverride: (id: string, oid: string) =>
+      `/api/v1/admin/feature-flags/${id}/overrides/${oid}`,
+    adminAuditLog: (id: string) => `/api/v1/admin/feature-flags/${id}/audit-log`,
+    adminAllAuditLogs: "/api/v1/admin/feature-flags/audit-log",
+  },
 } as const;

@@ -24,7 +24,10 @@ function AdminNav() {
   const t = useTranslations("admin");
   const pathname = usePathname();
 
-  const navItems = [{ href: "/admin/users" as const, label: t("users") }];
+  const navItems = [
+    { href: "/admin/users" as const, label: t("users") },
+    { href: "/admin/feature-flags" as const, label: t("featureFlags.title") },
+  ];
 
   return (
     <nav className="flex gap-4 border-b px-6 py-3">
