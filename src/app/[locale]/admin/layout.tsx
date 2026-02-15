@@ -27,6 +27,7 @@ function AdminNav() {
   const navItems = [
     { href: "/admin/users" as const, label: t("users") },
     { href: "/admin/feature-flags" as const, label: t("featureFlags.title") },
+    { href: "/admin/audit-logs" as const, label: t("auditLogs.title") },
   ];
 
   return (

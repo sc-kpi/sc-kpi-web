@@ -22,19 +22,6 @@ export interface FeatureFlagOverrideDto {
   enabled: boolean;
 }
 
-export interface FeatureFlagAuditEntry {
-  id: string;
-  flagId: string;
-  flagKey: string;
-  action: string;
-  fieldName: string | null;
-  oldValue: string | null;
-  newValue: string | null;
-  reason: string | null;
-  changedBy: string | null;
-  changedAt: string;
-}
-
 export interface CreateFeatureFlagRequest {
   key: string;
   name: string;

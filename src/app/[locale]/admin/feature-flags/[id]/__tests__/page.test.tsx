@@ -14,6 +14,9 @@ vi.mock("next/navigation", () => ({
 
 vi.mock("@/i18n/navigation", () => ({
   useRouter: () => ({ push: mockPush }),
+  Link: ({ children, href }: { children: React.ReactNode; href: string }) => (
+    <a href={href}>{children}</a>
+  ),
 }));
 
 const sampleFlag: FeatureFlagDto = {
@@ -38,29 +41,6 @@ const sampleFlag: FeatureFlagDto = {
   updatedAt: "2024-01-01T00:00:00Z",
 };
 
-const auditData = {
-  content: [
-    {
-      id: "audit-1",
-      flagId: "flag-1",
-      flagKey: "test.flag",
-      action: "CREATED",
-      fieldName: null,
-      oldValue: null,
-      newValue: "true",
-      reason: null,
-      changedBy: "user-1",
-      changedAt: "2024-01-01T00:00:00Z",
-    },
-  ],
-  page: 0,
-  size: 20,
-  totalElements: 1,
-  totalPages: 1,
-  first: true,
-  last: true,
-};
-
 vi.mock("@/features/feature-flags/hooks", () => ({
   useAdminFeatureFlag: vi.fn(),
   useUpdateFeatureFlagMutation: () => ({
@@ -75,13 +55,11 @@ vi.mock("@/features/feature-flags/hooks", () => ({
     mutate: mockRemoveOverrideMutate,
     isPending: false,
   }),
-  useFeatureFlagAuditLog: vi.fn(),
 }));
 
-import { useAdminFeatureFlag, useFeatureFlagAuditLog } from "@/features/feature-flags/hooks";
+import { useAdminFeatureFlag } from "@/features/feature-flags/hooks";
 
 const mockedUseAdminFeatureFlag = vi.mocked(useAdminFeatureFlag);
-const mockedUseFeatureFlagAuditLog = vi.mocked(useFeatureFlagAuditLog);
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -93,9 +71,6 @@ describe("AdminFeatureFlagDetailPage", () => {
       data: sampleFlag,
       isLoading: false,
     } as ReturnType<typeof useAdminFeatureFlag>);
-    mockedUseFeatureFlagAuditLog.mockReturnValue({
-      data: auditData,
-    } as ReturnType<typeof useFeatureFlagAuditLog>);
 
     render(<AdminFeatureFlagDetailPage />);
 
@@ -109,9 +84,6 @@ describe("AdminFeatureFlagDetailPage", () => {
       data: sampleFlag,
       isLoading: false,
     } as ReturnType<typeof useAdminFeatureFlag>);
-    mockedUseFeatureFlagAuditLog.mockReturnValue({
-      data: auditData,
-    } as ReturnType<typeof useFeatureFlagAuditLog>);
 
     render(<AdminFeatureFlagDetailPage />);
 
@@ -119,18 +91,17 @@ describe("AdminFeatureFlagDetailPage", () => {
     expect(screen.getByText("Tier 5")).toBeInTheDocument();
   });
 
-  it("displays audit log table", () => {
+  it("displays audit log link to centralized audit", () => {
     mockedUseAdminFeatureFlag.mockReturnValue({
       data: sampleFlag,
       isLoading: false,
     } as ReturnType<typeof useAdminFeatureFlag>);
-    mockedUseFeatureFlagAuditLog.mockReturnValue({
-      data: auditData,
-    } as ReturnType<typeof useFeatureFlagAuditLog>);
 
     render(<AdminFeatureFlagDetailPage />);
 
-    expect(screen.getByText("CREATED")).toBeInTheDocument();
+    // The page should have a link to the centralized audit logs
+    const auditLink = screen.getByRole("link", { name: /audit/i });
+    expect(auditLink).toBeInTheDocument();
   });
 
   it("shows loading state", () => {
@@ -138,9 +109,6 @@ describe("AdminFeatureFlagDetailPage", () => {
       data: undefined,
       isLoading: true,
     } as ReturnType<typeof useAdminFeatureFlag>);
-    mockedUseFeatureFlagAuditLog.mockReturnValue({
-      data: undefined,
-    } as ReturnType<typeof useFeatureFlagAuditLog>);
 
     render(<AdminFeatureFlagDetailPage />);
 

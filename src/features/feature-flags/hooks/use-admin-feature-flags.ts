@@ -7,7 +7,6 @@ import {
   deleteFeatureFlag,
   getAdminFeatureFlag,
   getAdminFeatureFlags,
-  getAuditLog,
   removeOverride,
   toggleFeatureFlag,
   updateFeatureFlag,
@@ -21,7 +20,6 @@ import type {
 
 const ADMIN_FLAGS_KEY = ["admin-feature-flags"] as const;
 const adminFlagKey = (id: string) => ["admin-feature-flags", id] as const;
-const auditKey = (id: string) => ["admin-feature-flags", id, "audit"] as const;
 
 export function useAdminFeatureFlags(page = 0, size = 20) {
   return useQuery({
@@ -97,13 +95,5 @@ export function useRemoveOverrideMutation(id: string) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: adminFlagKey(id) });
     },
-  });
-}
-
-export function useFeatureFlagAuditLog(id: string, page = 0, size = 20) {
-  return useQuery({
-    queryKey: [...auditKey(id), { page, size }],
-    queryFn: () => getAuditLog(id, page, size),
-    enabled: !!id,
   });
 }

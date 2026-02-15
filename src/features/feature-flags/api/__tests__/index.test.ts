@@ -127,15 +127,4 @@ describe("feature-flags API client", () => {
     expect(url).toContain("/api/v1/admin/feature-flags/abc/overrides/ovr-1");
     expect(init.method).toBe("DELETE");
   });
-
-  it("getAuditLog calls audit log endpoint with pagination", async () => {
-    fetchMock.mockResolvedValueOnce(jsonResponse({ content: [], totalPages: 0 }));
-
-    await featureFlagApi.getAuditLog("abc", 2, 15);
-
-    const [url] = fetchMock.mock.calls[0];
-    expect(url).toContain("/api/v1/admin/feature-flags/abc/audit-log");
-    expect(url).toContain("page=2");
-    expect(url).toContain("size=15");
-  });
 });

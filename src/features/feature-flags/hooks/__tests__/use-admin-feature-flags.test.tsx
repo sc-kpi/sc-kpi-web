@@ -12,7 +12,6 @@ vi.mock("../../api", () => ({
   deleteFeatureFlag: vi.fn(),
   addOverride: vi.fn(),
   removeOverride: vi.fn(),
-  getAuditLog: vi.fn(),
 }));
 
 import {
@@ -21,7 +20,6 @@ import {
   deleteFeatureFlag,
   getAdminFeatureFlag,
   getAdminFeatureFlags,
-  getAuditLog,
   removeOverride,
   toggleFeatureFlag,
   updateFeatureFlag,
@@ -33,7 +31,6 @@ import {
   useAdminFeatureFlags,
   useCreateFeatureFlagMutation,
   useDeleteFeatureFlagMutation,
-  useFeatureFlagAuditLog,
   useRemoveOverrideMutation,
   useToggleFeatureFlagMutation,
   useUpdateFeatureFlagMutation,
@@ -47,7 +44,6 @@ const mockedToggleFeatureFlag = vi.mocked(toggleFeatureFlag);
 const mockedDeleteFeatureFlag = vi.mocked(deleteFeatureFlag);
 const mockedAddOverride = vi.mocked(addOverride);
 const mockedRemoveOverride = vi.mocked(removeOverride);
-const mockedGetAuditLog = vi.mocked(getAuditLog);
 
 const sampleFlag: FeatureFlagDto = {
   id: "flag-1",
@@ -274,45 +270,5 @@ describe("useRemoveOverrideMutation", () => {
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(mockedRemoveOverride).toHaveBeenCalledWith("flag-1", "ovr-1");
-  });
-});
-
-describe("useFeatureFlagAuditLog", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it("returns paginated audit entries", async () => {
-    mockedGetAuditLog.mockResolvedValueOnce({
-      content: [
-        {
-          id: "audit-1",
-          flagId: "flag-1",
-          flagKey: "test.flag",
-          action: "CREATED",
-          fieldName: null,
-          oldValue: null,
-          newValue: "true",
-          reason: null,
-          changedBy: null,
-          changedAt: "2024-01-01T00:00:00Z",
-        },
-      ],
-      page: 0,
-      size: 20,
-      totalElements: 1,
-      totalPages: 1,
-      first: true,
-      last: true,
-    });
-
-    const { result } = renderHook(() => useFeatureFlagAuditLog("flag-1"), {
-      wrapper: createWrapper(),
-    });
-
-    await waitFor(() => expect(result.current.isSuccess).toBe(true));
-
-    expect(result.current.data?.content).toHaveLength(1);
-    expect(result.current.data?.content[0].action).toBe("CREATED");
   });
 });
