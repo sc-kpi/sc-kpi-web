@@ -104,6 +104,38 @@
       "3": "Advanced",
       "4": "Senior",
       "5": "Admin"
+    },
+    "featureFlags": {
+      "title": "Feature Flags",
+      "createFlag": "Create flag",
+      "editFlag": "Edit flag",
+      "flagDetails": "Flag details",
+      "key": "Key",
+      "keyHint": "Lowercase letters, digits, dots, and hyphens (e.g. auth.oauth2.google)",
+      "name": "Name",
+      "description": "Description",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "status": "Status",
+      "environment": "Environment",
+      "allEnvironments": "All environments",
+      "rollout": "Rollout %",
+      "edit": "Edit",
+      "confirmDelete": "Are you sure you want to delete this feature flag?",
+      "backToList": "Back to list",
+      "overrides": "Overrides",
+      "noOverrides": "No overrides configured",
+      "type": "Type",
+      "target": "Target",
+      "addOverride": "Add override",
+      "auditLog": "Audit log",
+      "noAuditEntries": "No audit entries",
+      "action": "Action",
+      "field": "Field",
+      "oldValue": "Old value",
+      "newValue": "New value",
+      "reason": "Reason",
+      "changedAt": "Changed at"
     }
   }
 }
