@@ -28,6 +28,7 @@ function AdminNav() {
     { href: "/admin/users" as const, label: t("users") },
     { href: "/admin/feature-flags" as const, label: t("featureFlags.title") },
     { href: "/admin/audit-logs" as const, label: t("auditLogs.title") },
+    { href: "/admin/notifications" as const, label: t("notifications.title") },
   ];
 
   return (

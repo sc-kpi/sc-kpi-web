@@ -130,6 +130,9 @@
       "allModules": "All modules",
       "sourceModule": "Module"
     },
+    "notifications": {
+      "title": "Notifications"
+    },
     "featureFlags": {
       "title": "Feature Flags",
       "createFlag": "Create flag",
@@ -161,6 +164,99 @@
       "newValue": "New value",
       "reason": "Reason",
       "changedAt": "Changed at"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications",
+    "loading": "Loading...",
+    "markRead": "Mark as read",
+    "markAllRead": "Mark all as read",
+    "viewAll": "View all notifications",
+    "justNow": "just now",
+    "minutesAgo": "{count}m ago",
+    "hoursAgo": "{count}h ago",
+    "daysAgo": "{count}d ago",
+    "categories": {
+      "SECURITY": "Security",
+      "ADMIN": "Admin",
+      "SYSTEM": "System",
+      "FEATURE_FLAG": "Feature Flag"
+    },
+    "channels": {
+      "IN_APP": "In-app",
+      "EMAIL": "Email"
+    },
+    "titles": {
+      "notification.security.login": "New login",
+      "notification.security.login_failed": "Failed login attempt",
+      "notification.security.password_reset": "Password reset",
+      "notification.security.oauth_linked": "Account linked",
+      "notification.admin.tier_changed": "Tier changed",
+      "notification.admin.status_changed": "Status changed",
+      "notification.admin.partner_assigned": "Partner assigned",
+      "notification.admin.partner_removed": "Partner removed",
+      "notification.feature_flag.toggled": "Feature flag toggled",
+      "notification.feature_flag.override_added": "Feature flag override added"
+    },
+    "bodies": {
+      "notification.security.login.body": "A new login was detected on your account.",
+      "notification.security.login_failed.body": "A failed login attempt was detected on your account.",
+      "notification.security.password_reset.body": "Your password has been successfully reset.",
+      "notification.security.oauth_linked.body": "An external account has been linked.",
+      "notification.admin.tier_changed.body": "Your access tier has been changed.",
+      "notification.admin.status_changed.body": "Your account status has been updated.",
+      "notification.admin.partner_assigned.body": "You have been assigned a partner role.",
+      "notification.admin.partner_removed.body": "A partner role has been removed.",
+      "notification.feature_flag.toggled.body": "A feature flag has been toggled.",
+      "notification.feature_flag.override_added.body": "A feature flag override has been added."
+    },
+    "filters": {
+      "all": "All",
+      "unread": "Unread",
+      "read": "Read"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {current} of {total}"
+    },
+    "preferences": {
+      "title": "Notification Preferences",
+      "category": "Category",
+      "save": "Save preferences",
+      "saving": "Saving..."
+    },
+    "admin": {
+      "title": "Notification Management",
+      "loading": "Loading...",
+      "empty": "No notifications",
+      "search": "Search notifications...",
+      "apply": "Search",
+      "cleanup": "Cleanup (90 days)",
+      "previous": "Previous",
+      "next": "Next",
+      "tabs": {
+        "list": "All Notifications",
+        "broadcast": "Broadcast",
+        "stats": "Statistics"
+      },
+      "broadcast": {
+        "title": "Broadcast Notification",
+        "titleKey": "Title key",
+        "bodyKey": "Body key",
+        "category": "Category",
+        "targetTier": "Target tier",
+        "allUsers": "All users",
+        "send": "Send broadcast",
+        "sending": "Sending..."
+      },
+      "stats": {
+        "total": "Total notifications",
+        "last24h": "Last 24 hours",
+        "readRate": "Read rate",
+        "byCategory": "By category"
+      }
     }
   }
 }

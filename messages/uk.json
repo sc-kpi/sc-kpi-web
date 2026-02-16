@@ -130,6 +130,9 @@
       "allModules": "Усі модулі",
       "sourceModule": "Модуль"
     },
+    "notifications": {
+      "title": "Сповіщення"
+    },
     "featureFlags": {
       "title": "Функціональні прапорці",
       "createFlag": "Створити прапорець",
@@ -161,6 +164,99 @@
       "newValue": "Нове значення",
       "reason": "Причина",
       "changedAt": "Змінено"
+    }
+  },
+  "notifications": {
+    "title": "Сповіщення",
+    "empty": "Немає сповіщень",
+    "loading": "Завантаження...",
+    "markRead": "Позначити як прочитане",
+    "markAllRead": "Позначити всі як прочитані",
+    "viewAll": "Переглянути всі сповіщення",
+    "justNow": "щойно",
+    "minutesAgo": "{count} хв тому",
+    "hoursAgo": "{count} год тому",
+    "daysAgo": "{count} дн тому",
+    "categories": {
+      "SECURITY": "Безпека",
+      "ADMIN": "Адміністрування",
+      "SYSTEM": "Система",
+      "FEATURE_FLAG": "Функціональний прапорець"
+    },
+    "channels": {
+      "IN_APP": "У застосунку",
+      "EMAIL": "Електронна пошта"
+    },
+    "titles": {
+      "notification.security.login": "Новий вхід",
+      "notification.security.login_failed": "Невдала спроба входу",
+      "notification.security.password_reset": "Скидання пароля",
+      "notification.security.oauth_linked": "Акаунт прив'язано",
+      "notification.admin.tier_changed": "Зміна рівня",
+      "notification.admin.status_changed": "Зміна статусу",
+      "notification.admin.partner_assigned": "Партнера призначено",
+      "notification.admin.partner_removed": "Партнера видалено",
+      "notification.feature_flag.toggled": "Прапорець перемкнуто",
+      "notification.feature_flag.override_added": "Додано перевизначення прапорця"
+    },
+    "bodies": {
+      "notification.security.login.body": "Виявлено новий вхід у ваш акаунт.",
+      "notification.security.login_failed.body": "Виявлено невдалу спробу входу у ваш акаунт.",
+      "notification.security.password_reset.body": "Ваш пароль успішно скинуто.",
+      "notification.security.oauth_linked.body": "Зовнішній акаунт було прив'язано.",
+      "notification.admin.tier_changed.body": "Ваш рівень доступу змінено.",
+      "notification.admin.status_changed.body": "Статус вашого акаунту оновлено.",
+      "notification.admin.partner_assigned.body": "Вам призначено партнерську роль.",
+      "notification.admin.partner_removed.body": "Партнерську роль видалено.",
+      "notification.feature_flag.toggled.body": "Функціональний прапорець перемкнуто.",
+      "notification.feature_flag.override_added.body": "Додано перевизначення функціонального прапорця."
+    },
+    "filters": {
+      "all": "Усі",
+      "unread": "Непрочитані",
+      "read": "Прочитані"
+    },
+    "pagination": {
+      "previous": "Попередня",
+      "next": "Наступна",
+      "page": "Сторінка {current} з {total}"
+    },
+    "preferences": {
+      "title": "Налаштування сповіщень",
+      "category": "Категорія",
+      "save": "Зберегти налаштування",
+      "saving": "Збереження..."
+    },
+    "admin": {
+      "title": "Керування сповіщеннями",
+      "loading": "Завантаження...",
+      "empty": "Немає сповіщень",
+      "search": "Пошук сповіщень...",
+      "apply": "Шукати",
+      "cleanup": "Очищення (90 днів)",
+      "previous": "Попередня",
+      "next": "Наступна",
+      "tabs": {
+        "list": "Усі сповіщення",
+        "broadcast": "Розсилка",
+        "stats": "Статистика"
+      },
+      "broadcast": {
+        "title": "Розсилка сповіщення",
+        "titleKey": "Ключ заголовку",
+        "bodyKey": "Ключ тексту",
+        "category": "Категорія",
+        "targetTier": "Цільовий рівень",
+        "allUsers": "Усі користувачі",
+        "send": "Надіслати розсилку",
+        "sending": "Надсилання..."
+      },
+      "stats": {
+        "total": "Всього сповіщень",
+        "last24h": "За останні 24 години",
+        "readRate": "Відсоток прочитаних",
+        "byCategory": "За категоріями"
+      }
     }
   }
 }
