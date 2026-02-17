@@ -31,7 +31,7 @@ export function NotificationBell() {
         <Button variant="ghost" size="icon" className="relative">
           <Bell className="h-5 w-5" />
           {unreadCount > 0 && (
-            <span className="absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-destructive px-1 text-xs font-bold text-destructive-foreground">
+            <span className="absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-destructive px-1 font-bold text-destructive-foreground text-xs">
               {unreadCount > 99 ? "99+" : unreadCount}
             </span>
           )}
@@ -39,7 +39,7 @@ export function NotificationBell() {
       </PopoverTrigger>
       <PopoverContent className="w-96 p-0" align="end">
         <div className="flex items-center justify-between px-4 py-3">
-          <h4 className="text-sm font-semibold">{t("title")}</h4>
+          <h4 className="font-semibold text-sm">{t("title")}</h4>
           {unreadCount > 0 && (
             <Button variant="ghost" size="sm" onClick={() => markAllRead.mutate()}>
               {t("markAllRead")}
@@ -49,7 +49,7 @@ export function NotificationBell() {
         <Separator />
         <div className="max-h-80 overflow-y-auto p-2">
           {notifications.length === 0 ? (
-            <p className="py-6 text-center text-sm text-muted-foreground">{t("empty")}</p>
+            <p className="py-6 text-center text-muted-foreground text-sm">{t("empty")}</p>
           ) : (
             <div className="space-y-1">
               {notifications.map((n) => (

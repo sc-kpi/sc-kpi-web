@@ -25,6 +25,7 @@ export interface AuthUser {
   lastName: string;
   capabilityTier: CapabilityTier;
   partnerRoles: PartnerRole[];
+  twoFactorEnabled: boolean;
 }
 
 export interface LoginRequest {
@@ -37,4 +38,39 @@ export interface RegisterRequest {
   password: string;
   firstName: string;
   lastName: string;
+}
+
+export interface LoginResponse {
+  id: string | null;
+  email: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  capabilityTier: number;
+  partnerRoles: PartnerRole[] | null;
+  twoFactorEnabled: boolean;
+  twoFactorRequired: boolean;
+}
+
+export interface TotpSetupResponse {
+  qrCodeDataUri: string;
+  manualEntryKey: string;
+}
+
+export interface TotpStatusResponse {
+  enabled: boolean;
+  recoveryCodesRemaining: number;
+  enabledAt: string | null;
+}
+
+export interface RecoveryCodesResponse {
+  codes: string[];
+}
+
+export interface TotpVerifyRequest {
+  code: string;
+}
+
+export interface TotpDisableRequest {
+  password: string;
+  code: string;
 }

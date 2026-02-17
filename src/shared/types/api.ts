@@ -49,6 +49,10 @@ export class ApiError extends Error {
   get isNotFound(): boolean {
     return this.status === 404;
   }
+
+  get isRateLimited(): boolean {
+    return this.status === 429;
+  }
 }
 
 export interface PaginatedResponse<T> {

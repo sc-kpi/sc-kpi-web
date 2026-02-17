@@ -11,7 +11,7 @@ export default function AdminNotificationsPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
+      <h1 className="font-bold text-2xl">{t("title")}</h1>
       <Tabs defaultValue="list">
         <TabsList>
           <TabsTrigger value="list">{t("tabs.list")}</TabsTrigger>

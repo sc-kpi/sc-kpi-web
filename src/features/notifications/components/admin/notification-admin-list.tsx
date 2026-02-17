@@ -73,7 +73,7 @@ export function NotificationAdminList() {
           >
             {t("previous")}
           </Button>
-          <span className="flex items-center text-sm text-muted-foreground">
+          <span className="flex items-center text-muted-foreground text-sm">
             {currentPage + 1} / {totalPages}
           </span>
           <Button

@@ -35,8 +35,12 @@ export function LoginForm() {
   async function onSubmit(data: LoginFormData) {
     setApiError(null);
     try {
-      await login(data);
-      router.push("/");
+      const result = await login(data);
+      if (result.twoFactorRequired) {
+        router.push("/verify-2fa");
+      } else {
+        router.push("/");
+      }
     } catch (error) {
       if (error instanceof ApiError) {
         setApiError(error.detail ?? t("loginError"));

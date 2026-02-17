@@ -33,3 +33,22 @@ export const resetPasswordSchema = z
   });
 
 export type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
+
+export const totpCodeSchema = z.object({
+  code: z
+    .string()
+    .min(6, { error: "Code must be at least 6 characters" })
+    .max(10, { error: "Code must be at most 10 characters" }),
+});
+
+export type TotpCodeFormData = z.infer<typeof totpCodeSchema>;
+
+export const totpDisableSchema = z.object({
+  password: z.string().min(1, { error: "Password is required" }),
+  code: z
+    .string()
+    .min(6, { error: "Code must be at least 6 characters" })
+    .max(10, { error: "Code must be at most 10 characters" }),
+});
+
+export type TotpDisableFormData = z.infer<typeof totpDisableSchema>;

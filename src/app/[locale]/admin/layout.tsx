@@ -29,6 +29,7 @@ function AdminNav() {
     { href: "/admin/feature-flags" as const, label: t("featureFlags.title") },
     { href: "/admin/audit-logs" as const, label: t("auditLogs.title") },
     { href: "/admin/notifications" as const, label: t("notifications.title") },
+    { href: "/admin/rate-limits" as const, label: t("rateLimits.title") },
   ];
 
   return (

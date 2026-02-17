@@ -24,6 +24,7 @@
     "register": "Sign up",
     "profile": "Profile",
     "logout": "Log out",
+    "security": "Security",
     "admin": "Administration"
   },
   "auth": {
@@ -62,7 +63,44 @@
     "loginError": "Invalid email or password",
     "registerError": "Registration failed",
     "emailTaken": "This email is already registered",
-    "registerSuccess": "Account created successfully"
+    "registerSuccess": "Account created successfully",
+    "twoFactor": {
+      "pageTitle": "Security",
+      "title": "Two-Factor Authentication",
+      "description": "Add an extra layer of security to your account using a TOTP authenticator app.",
+      "authenticatorApp": "Authenticator App",
+      "enabled": "Enabled",
+      "disabled": "Not configured",
+      "enable": "Enable",
+      "disable": "Disable 2FA",
+      "recoveryCodesRemaining": "{count} recovery codes remaining",
+      "verifyTitle": "Two-Factor Verification",
+      "verifyDescription": "Enter the 6-digit code from your authenticator app to complete sign-in.",
+      "codeLabel": "Verification code",
+      "recoveryCodeLabel": "Recovery code",
+      "verify": "Verify",
+      "verifying": "Verifying...",
+      "verifyError": "Invalid verification code",
+      "useRecoveryCode": "Use a recovery code instead",
+      "useAuthenticatorCode": "Use authenticator code",
+      "setupTitle": "Set Up Two-Factor Authentication",
+      "setupStep1": "Scan this QR code with your authenticator app (Google Authenticator, Authy, etc.)",
+      "setupStep2": "Enter the 6-digit code from your authenticator app to verify setup.",
+      "setupStep3": "Save these recovery codes in a safe place. Each code can only be used once.",
+      "setupError": "Failed to start 2FA setup",
+      "manualEntryKey": "Manual entry key",
+      "next": "Next",
+      "verifyAndEnable": "Verify & Enable",
+      "backupCodesWarning": "Save these codes now! You won't be able to see them again. If you lose access to your authenticator app, you can use these codes to sign in.",
+      "copyAll": "Copy All",
+      "download": "Download",
+      "done": "I've saved my codes",
+      "disableTitle": "Disable Two-Factor Authentication",
+      "disableDescription": "Enter your password and a TOTP code to disable 2FA. This will remove all recovery codes.",
+      "passwordLabel": "Password",
+      "disabling": "Disabling...",
+      "disableError": "Failed to disable 2FA"
+    }
   },
   "home": {
     "title": "SC KPI",
@@ -133,6 +171,40 @@
     "notifications": {
       "title": "Notifications"
     },
+    "rateLimits": {
+      "title": "Rate Limits",
+      "createRule": "Create rule",
+      "editRule": "Edit rule",
+      "ruleDetails": "Rule details",
+      "name": "Name",
+      "description": "Description",
+      "endpointPattern": "Endpoint pattern",
+      "endpointPatternHint": "Ant-style pattern (e.g. /api/v1/auth/**)",
+      "httpMethod": "HTTP Method",
+      "anyMethod": "Any method",
+      "limitPerPeriod": "Limit per period",
+      "periodSeconds": "Period (seconds)",
+      "burstCapacity": "Burst capacity",
+      "scope": "Scope",
+      "targetTier": "Target tier",
+      "targetUserId": "Target user ID",
+      "timeWindowStart": "Time window start",
+      "timeWindowEnd": "Time window end",
+      "priority": "Priority",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "status": "Status",
+      "edit": "Edit",
+      "confirmDelete": "Are you sure you want to delete this rate limit rule?",
+      "backToList": "Back to list",
+      "auditLog": "Audit log",
+      "scopes": {
+        "GLOBAL": "Global",
+        "IP": "IP",
+        "USER": "User",
+        "TIER": "Tier"
+      }
+    },
     "featureFlags": {
       "title": "Feature Flags",
       "createFlag": "Create flag",
@@ -181,7 +253,8 @@
       "SECURITY": "Security",
       "ADMIN": "Admin",
       "SYSTEM": "System",
-      "FEATURE_FLAG": "Feature Flag"
+      "FEATURE_FLAG": "Feature Flag",
+      "RATE_LIMIT": "Rate Limit"
     },
     "channels": {
       "IN_APP": "In-app",
@@ -196,6 +269,9 @@
       "notification.admin.status_changed": "Status changed",
       "notification.admin.partner_assigned": "Partner assigned",
       "notification.admin.partner_removed": "Partner removed",
+      "notification.security.mfa_enabled": "2FA enabled",
+      "notification.security.mfa_disabled": "2FA disabled",
+      "notification.security.mfa_recovery_used": "Recovery code used",
       "notification.feature_flag.toggled": "Feature flag toggled",
       "notification.feature_flag.override_added": "Feature flag override added"
     },
@@ -208,6 +284,9 @@
       "notification.admin.status_changed.body": "Your account status has been updated.",
       "notification.admin.partner_assigned.body": "You have been assigned a partner role.",
       "notification.admin.partner_removed.body": "A partner role has been removed.",
+      "notification.security.mfa_enabled.body": "Two-factor authentication has been enabled on your account.",
+      "notification.security.mfa_disabled.body": "Two-factor authentication has been disabled on your account.",
+      "notification.security.mfa_recovery_used.body": "A recovery code was used to sign in to your account.",
       "notification.feature_flag.toggled.body": "A feature flag has been toggled.",
       "notification.feature_flag.override_added.body": "A feature flag override has been added."
     },

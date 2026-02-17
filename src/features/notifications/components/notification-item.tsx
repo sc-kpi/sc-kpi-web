@@ -41,17 +41,17 @@ export function NotificationItem({ notification, onMarkRead }: NotificationItemP
       {!notification.read && <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" />}
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium">
+          <span className="font-medium text-sm">
             {t(`titles.${notification.titleKey}`, { default: notification.titleKey })}
           </span>
           <Badge variant="outline" className={categoryColors[notification.category]}>
             {t(`categories.${notification.category}`)}
           </Badge>
         </div>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <p className="mt-1 text-muted-foreground text-sm">
           {t(`bodies.${notification.bodyKey}`, { default: notification.bodyKey })}
         </p>
-        <span className="mt-1 text-xs text-muted-foreground">
+        <span className="mt-1 text-muted-foreground text-xs">
           {timeAgo(notification.createdAt)}
         </span>
       </div>
