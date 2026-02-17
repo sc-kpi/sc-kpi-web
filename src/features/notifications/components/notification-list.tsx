@@ -42,7 +42,7 @@ export function NotificationList() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">{t("title")}</h1>
+        <h1 className="font-bold text-2xl">{t("title")}</h1>
         <Button variant="outline" size="sm" onClick={() => markAllRead.mutate()}>
           {t("markAllRead")}
         </Button>
@@ -108,7 +108,7 @@ export function NotificationList() {
           >
             {t("pagination.previous")}
           </Button>
-          <span className="flex items-center text-sm text-muted-foreground">
+          <span className="flex items-center text-muted-foreground text-sm">
             {t("pagination.page", { current: currentPage + 1, total: totalPages })}
           </span>
           <Button

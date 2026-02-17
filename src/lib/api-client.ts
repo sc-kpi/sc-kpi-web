@@ -62,6 +62,29 @@ async function request<T>(
     body: body ? JSON.stringify(body) : undefined,
   });
 
+  // Rate limit handling
+  if (response.status === 429) {
+    const retryAfter = response.headers.get("Retry-After");
+    const seconds = retryAfter ? Number.parseInt(retryAfter, 10) : 60;
+    const contentType = response.headers.get("Content-Type") ?? "";
+    if (
+      contentType.includes("application/problem+json") ||
+      contentType.includes("application/json")
+    ) {
+      const problem: ProblemDetail = await response.json();
+      throw new ApiError({
+        ...problem,
+        detail: problem.detail || `Too many requests. Try again in ${seconds} seconds.`,
+      });
+    }
+    throw new ApiError({
+      type: "about:blank",
+      title: "Too Many Requests",
+      status: 429,
+      detail: `Too many requests. Try again in ${seconds} seconds.`,
+    });
+  }
+
   // Auto-refresh on 401
   if (response.status === 401) {
     const refreshed = await handleTokenRefresh();

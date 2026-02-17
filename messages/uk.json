@@ -24,6 +24,7 @@
     "register": "Реєстрація",
     "profile": "Профіль",
     "logout": "Вийти",
+    "security": "Безпека",
     "admin": "Адміністрування"
   },
   "auth": {
@@ -62,7 +63,44 @@
     "loginError": "Невірна електронна пошта або пароль",
     "registerError": "Помилка реєстрації",
     "emailTaken": "Ця електронна пошта вже зареєстрована",
-    "registerSuccess": "Акаунт успішно створено"
+    "registerSuccess": "Акаунт успішно створено",
+    "twoFactor": {
+      "pageTitle": "Безпека",
+      "title": "Двофакторна автентифікація",
+      "description": "Додайте додатковий рівень безпеки до вашого акаунту за допомогою TOTP-додатку для автентифікації.",
+      "authenticatorApp": "Додаток для автентифікації",
+      "enabled": "Увімкнено",
+      "disabled": "Не налаштовано",
+      "enable": "Увімкнути",
+      "disable": "Вимкнути 2FA",
+      "recoveryCodesRemaining": "Залишилось {count} кодів відновлення",
+      "verifyTitle": "Двофакторна перевірка",
+      "verifyDescription": "Введіть 6-значний код з вашого додатку автентифікації для завершення входу.",
+      "codeLabel": "Код підтвердження",
+      "recoveryCodeLabel": "Код відновлення",
+      "verify": "Підтвердити",
+      "verifying": "Перевірка...",
+      "verifyError": "Невірний код підтвердження",
+      "useRecoveryCode": "Використати код відновлення",
+      "useAuthenticatorCode": "Використати код автентифікатора",
+      "setupTitle": "Налаштування двофакторної автентифікації",
+      "setupStep1": "Відскануйте цей QR-код додатком для автентифікації (Google Authenticator, Authy тощо)",
+      "setupStep2": "Введіть 6-значний код з вашого додатку автентифікації для перевірки.",
+      "setupStep3": "Збережіть ці коди відновлення в надійному місці. Кожен код можна використати лише один раз.",
+      "setupError": "Не вдалося розпочати налаштування 2FA",
+      "manualEntryKey": "Ключ для ручного введення",
+      "next": "Далі",
+      "verifyAndEnable": "Перевірити та увімкнути",
+      "backupCodesWarning": "Збережіть ці коди зараз! Ви більше не зможете їх побачити. Якщо ви втратите доступ до додатку автентифікації, ви зможете використати ці коди для входу.",
+      "copyAll": "Копіювати всі",
+      "download": "Завантажити",
+      "done": "Я зберіг свої коди",
+      "disableTitle": "Вимкнути двофакторну автентифікацію",
+      "disableDescription": "Введіть пароль та TOTP-код для вимкнення 2FA. Це видалить усі коди відновлення.",
+      "passwordLabel": "Пароль",
+      "disabling": "Вимкнення...",
+      "disableError": "Не вдалося вимкнути 2FA"
+    }
   },
   "home": {
     "title": "Студентська Рада КПІ",
@@ -133,6 +171,40 @@
     "notifications": {
       "title": "Сповіщення"
     },
+    "rateLimits": {
+      "title": "Обмеження запитів",
+      "createRule": "Створити правило",
+      "editRule": "Редагувати правило",
+      "ruleDetails": "Деталі правила",
+      "name": "Назва",
+      "description": "Опис",
+      "endpointPattern": "Шаблон ендпоінту",
+      "endpointPatternHint": "Ant-шаблон (наприклад /api/v1/auth/**)",
+      "httpMethod": "HTTP метод",
+      "anyMethod": "Будь-який метод",
+      "limitPerPeriod": "Ліміт за період",
+      "periodSeconds": "Період (секунди)",
+      "burstCapacity": "Пікова ємність",
+      "scope": "Область",
+      "targetTier": "Цільовий рівень",
+      "targetUserId": "ID цільового користувача",
+      "timeWindowStart": "Початок вікна часу",
+      "timeWindowEnd": "Кінець вікна часу",
+      "priority": "Пріоритет",
+      "enabled": "Увімкнено",
+      "disabled": "Вимкнено",
+      "status": "Статус",
+      "edit": "Редагувати",
+      "confirmDelete": "Ви впевнені, що хочете видалити це правило обмеження запитів?",
+      "backToList": "Назад до списку",
+      "auditLog": "Журнал змін",
+      "scopes": {
+        "GLOBAL": "Глобальний",
+        "IP": "IP",
+        "USER": "Користувач",
+        "TIER": "Рівень"
+      }
+    },
     "featureFlags": {
       "title": "Функціональні прапорці",
       "createFlag": "Створити прапорець",
@@ -181,7 +253,8 @@
       "SECURITY": "Безпека",
       "ADMIN": "Адміністрування",
       "SYSTEM": "Система",
-      "FEATURE_FLAG": "Функціональний прапорець"
+      "FEATURE_FLAG": "Функціональний прапорець",
+      "RATE_LIMIT": "Обмеження запитів"
     },
     "channels": {
       "IN_APP": "У застосунку",
@@ -196,6 +269,9 @@
       "notification.admin.status_changed": "Зміна статусу",
       "notification.admin.partner_assigned": "Партнера призначено",
       "notification.admin.partner_removed": "Партнера видалено",
+      "notification.security.mfa_enabled": "2FA увімкнено",
+      "notification.security.mfa_disabled": "2FA вимкнено",
+      "notification.security.mfa_recovery_used": "Використано код відновлення",
       "notification.feature_flag.toggled": "Прапорець перемкнуто",
       "notification.feature_flag.override_added": "Додано перевизначення прапорця"
     },
@@ -208,6 +284,9 @@
       "notification.admin.status_changed.body": "Статус вашого акаунту оновлено.",
       "notification.admin.partner_assigned.body": "Вам призначено партнерську роль.",
       "notification.admin.partner_removed.body": "Партнерську роль видалено.",
+      "notification.security.mfa_enabled.body": "Двофакторну автентифікацію увімкнено для вашого акаунту.",
+      "notification.security.mfa_disabled.body": "Двофакторну автентифікацію вимкнено для вашого акаунту.",
+      "notification.security.mfa_recovery_used.body": "Код відновлення було використано для входу у ваш акаунт.",
       "notification.feature_flag.toggled.body": "Функціональний прапорець перемкнуто.",
       "notification.feature_flag.override_added.body": "Додано перевизначення функціонального прапорця."
     },

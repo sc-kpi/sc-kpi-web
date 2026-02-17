@@ -2,7 +2,7 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getMe, login, logout, register } from "../api";
-import type { AuthUser, LoginRequest, RegisterRequest } from "../types";
+import type { AuthUser, LoginRequest, LoginResponse, RegisterRequest } from "../types";
 
 const AUTH_QUERY_KEY = ["auth", "me"] as const;
 
@@ -23,8 +23,18 @@ export function useAuth() {
 
   const loginMutation = useMutation({
     mutationFn: (data: LoginRequest) => login(data),
-    onSuccess: (user) => {
-      queryClient.setQueryData(AUTH_QUERY_KEY, user);
+    onSuccess: (response: LoginResponse) => {
+      if (!response.twoFactorRequired && response.id) {
+        queryClient.setQueryData(AUTH_QUERY_KEY, {
+          id: response.id,
+          email: response.email,
+          firstName: response.firstName,
+          lastName: response.lastName,
+          capabilityTier: response.capabilityTier,
+          partnerRoles: response.partnerRoles,
+          twoFactorEnabled: response.twoFactorEnabled,
+        } as AuthUser);
+      }
     },
   });
 

@@ -10,6 +10,14 @@ export const API_ROUTES = {
     forgotPassword: "/api/v1/auth/forgot-password",
     resetPassword: "/api/v1/auth/reset-password",
     googleOAuth: "/api/v1/auth/oauth2/google",
+    twoFactor: {
+      setup: "/api/v1/auth/2fa/setup",
+      verifySetup: "/api/v1/auth/2fa/verify-setup",
+      disable: "/api/v1/auth/2fa/disable",
+      status: "/api/v1/auth/2fa/status",
+      regenerateRecoveryCodes: "/api/v1/auth/2fa/recovery-codes/regenerate",
+      verifyLogin: "/api/v1/auth/2fa/verify-login",
+    },
   },
   users: {
     base: "/api/v1/users",
@@ -60,6 +68,12 @@ export const API_ROUTES = {
     adminOverrides: (id: string) => `/api/v1/admin/feature-flags/${id}/overrides`,
     adminOverride: (id: string, oid: string) =>
       `/api/v1/admin/feature-flags/${id}/overrides/${oid}`,
+  },
+  rateLimits: {
+    admin: "/api/v1/admin/rate-limits",
+    adminById: (id: string) => `/api/v1/admin/rate-limits/${id}`,
+    adminToggle: (id: string) => `/api/v1/admin/rate-limits/${id}/toggle`,
+    adminStats: "/api/v1/admin/rate-limits/stats",
   },
   audit: {
     base: "/api/v1/admin/audit-logs",
