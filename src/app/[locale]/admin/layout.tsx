@@ -33,7 +33,7 @@ function AdminNav() {
   ];
 
   return (
-    <nav className="flex gap-4 border-b px-6 py-3">
+    <nav className="flex gap-4 overflow-x-auto border-b px-6 py-3">
       <h2 className="font-semibold text-lg">{t("title")}</h2>
       <div className="flex gap-2">
         {navItems.map((item) => (
