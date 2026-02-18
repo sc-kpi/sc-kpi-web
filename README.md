@@ -6,16 +6,15 @@ Frontend application for the Student Council at Igor Sikorsky Kyiv Polytechnic I
 
 | Tool | Version | Purpose |
 |------|---------|---------|
-| Next.js | 16.x | App Router, Turbopack, React 19 |
-| TypeScript | 5.x | Strict mode |
+| Next.js | 16.1.6 | App Router, Turbopack, React 19 |
+| TypeScript | 5.9 | Strict mode |
 | TailwindCSS | 4 | Utility-first CSS |
 | shadcn/ui | latest | Component library (Zinc, new-york style) |
-| Biome | 2.x | Linter + formatter |
-| next-intl | latest | i18n (Ukrainian default + English) |
+| Biome | 2.3 | Linter + formatter |
+| next-intl | 4.8 | i18n (Ukrainian default + English) |
 | TanStack Query | v5 | Server state / data fetching |
-| Vitest | latest | Unit / component tests |
-| Playwright | latest | E2E tests |
-| pnpm | 10.x | Package manager |
+| Vitest | 4.x | Unit / component tests |
+| pnpm | 10 | Package manager |
 
 ## Prerequisites
 
@@ -52,7 +51,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `pnpm test` | Run unit tests |
 | `pnpm test:watch` | Run unit tests in watch mode |
 | `pnpm test:coverage` | Run unit tests with coverage |
-| `pnpm test:e2e` | Run E2E tests with Playwright |
 
 ## Project Structure
 
@@ -74,7 +72,10 @@ src/
 │   ├── engagements/        # Clubs & Projects
 │   ├── council/            # Departments
 │   ├── documents/          # Documents
-│   └── notifications/      # Notifications
+│   ├── notifications/      # Notifications
+│   ├── audit/              # Audit logs
+│   ├── feature-flags/      # Feature flag management
+│   └── rate-limits/        # Rate limit management
 ├── shared/
 │   ├── ui/                 # shadcn/ui components
 │   ├── components/         # App-wide components
@@ -89,7 +90,7 @@ src/
 │   ├── routing.ts          # Locale routing config
 │   ├── request.ts          # Server request config
 │   └── navigation.ts       # Localized navigation
-└── middleware.ts            # Auth + i18n middleware
+└── middleware.ts            # Auth + i18n middleware (deprecated in Next.js 16 — proxy recommended)
 ```
 
 ## Docker
