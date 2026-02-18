@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 import { ApiError } from "@/shared/types/api";
 import { Button } from "@/shared/ui/button";
@@ -42,6 +43,7 @@ export function TotpDisableForm({ open, onOpenChange }: TotpDisableFormProps) {
     setApiError(null);
     try {
       await disableMutation.mutateAsync(data);
+      toast.success(t("disabledSuccess"));
       reset();
       onOpenChange(false);
     } catch (error) {

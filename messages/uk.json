@@ -99,7 +99,9 @@
       "disableDescription": "Введіть пароль та TOTP-код для вимкнення 2FA. Це видалить усі коди відновлення.",
       "passwordLabel": "Пароль",
       "disabling": "Вимкнення...",
-      "disableError": "Не вдалося вимкнути 2FA"
+      "disableError": "Не вдалося вимкнути 2FA",
+      "enabledSuccess": "2FA успішно увімкнено",
+      "disabledSuccess": "2FA успішно вимкнено"
     }
   },
   "home": {

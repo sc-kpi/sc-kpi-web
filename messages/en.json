@@ -99,7 +99,9 @@
       "disableDescription": "Enter your password and a TOTP code to disable 2FA. This will remove all recovery codes.",
       "passwordLabel": "Password",
       "disabling": "Disabling...",
-      "disableError": "Failed to disable 2FA"
+      "disableError": "Failed to disable 2FA",
+      "enabledSuccess": "2FA enabled successfully",
+      "disabledSuccess": "2FA disabled successfully"
     }
   },
   "home": {

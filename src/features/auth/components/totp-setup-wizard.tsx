@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 import { ApiError } from "@/shared/types/api";
 import { Button } from "@/shared/ui/button";
@@ -68,6 +69,7 @@ export function TotpSetupWizard({ open, onOpenChange }: TotpSetupWizardProps) {
       const result = await verifyMutation.mutateAsync({ code: data.code });
       setRecoveryCodes(result.codes);
       setStep("codes");
+      toast.success(t("enabledSuccess"));
     } catch (error) {
       if (error instanceof ApiError) {
         setApiError(error.detail ?? t("verifyError"));
@@ -119,6 +121,7 @@ export function TotpSetupWizard({ open, onOpenChange }: TotpSetupWizardProps) {
           <div className="space-y-4">
             <div className="flex justify-center">
               <img
+                data-testid="2fa-qr-code"
                 src={setupData.qrCodeDataUri}
                 alt="TOTP QR Code"
                 className="h-[200px] w-[200px]"
@@ -126,7 +129,7 @@ export function TotpSetupWizard({ open, onOpenChange }: TotpSetupWizardProps) {
             </div>
             <div className="space-y-2">
               <Label>{t("manualEntryKey")}</Label>
-              <code className="block break-all rounded-md bg-muted p-2 text-center font-mono text-sm">
+              <code data-testid="2fa-secret-key" className="block break-all rounded-md bg-muted p-2 text-center font-mono text-sm">
                 {setupData.manualEntryKey}
               </code>
             </div>
