@@ -129,7 +129,10 @@ export function TotpSetupWizard({ open, onOpenChange }: TotpSetupWizardProps) {
             </div>
             <div className="space-y-2">
               <Label>{t("manualEntryKey")}</Label>
-              <code data-testid="2fa-secret-key" className="block break-all rounded-md bg-muted p-2 text-center font-mono text-sm">
+              <code
+                data-testid="2fa-secret-key"
+                className="block break-all rounded-md bg-muted p-2 text-center font-mono text-sm"
+              >
                 {setupData.manualEntryKey}
               </code>
             </div>
