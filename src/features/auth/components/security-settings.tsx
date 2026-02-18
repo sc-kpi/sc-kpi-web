@@ -38,7 +38,10 @@ export function SecuritySettings() {
           <CardDescription>{t("description")}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div data-testid="2fa-status" className="flex items-center justify-between rounded-lg border p-4">
+          <div
+            data-testid="2fa-status"
+            className="flex items-center justify-between rounded-lg border p-4"
+          >
             <div className="space-y-1">
               <p className="font-medium text-sm">{t("authenticatorApp")}</p>
               <p className="text-muted-foreground text-sm">
