@@ -5,7 +5,7 @@ import { routing } from "./i18n/routing";
 const intlMiddleware = createMiddleware(routing);
 
 const publicRoutes = ["/", "/clubs", "/projects", "/departments", "/documents", "/forbidden"];
-const authRoutes = ["/login", "/register", "/forgot-password", "/reset-password"];
+const authRoutes = ["/login", "/register", "/forgot-password", "/reset-password", "/verify-2fa"];
 const adminRoutes = ["/admin"];
 
 function extractTierFromToken(token: string): number {
